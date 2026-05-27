@@ -1,0 +1,926 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stop Posting. Start Selling.</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #C9973A;
+  --gold-light: #F5E6C8;
+  --gold-pale: #FDF8F0;
+  --brown: #2C1810;
+  --brown-mid: #4A2810;
+  --cream: #FEFAF4;
+  --white: #FFFFFF;
+  --green: #1A6B3C;
+  --green-light: #E6F4ED;
+  --red: #B83232;
+  --red-light: #FDEAEA;
+  --text: #1C1209;
+  --muted: #7A6550;
+  --border: #EDE0CC;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Nunito',sans-serif; background:var(--cream); color:var(--text); font-size:15px; line-height:1.7; }
+
+/* ── COVER ── */
+.cover {
+  background: var(--brown);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 48px 28px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cover-glow {
+  position:absolute; border-radius:50%;
+  background: radial-gradient(circle, rgba(201,151,58,0.22) 0%, transparent 65%);
+}
+.cover-glow.top { width:380px;height:380px;top:-80px;right:-80px; }
+.cover-glow.bot { width:280px;height:280px;bottom:-60px;left:-60px; }
+.cover-png {
+  width:160px; height:160px;
+  border-radius:50%;
+  background: linear-gradient(135deg, rgba(201,151,58,0.3), rgba(201,151,58,0.05));
+  border: 2px dashed rgba(201,151,58,0.4);
+  display:flex; align-items:center; justify-content:center;
+  margin: 0 auto 28px;
+  position:relative; z-index:1;
+  font-size:12px; color:rgba(255,255,255,0.35);
+  letter-spacing:1px; text-align:center; padding:16px;
+}
+.cover-badge {
+  background: rgba(201,151,58,0.15);
+  border: 1px solid rgba(201,151,58,0.5);
+  color: var(--gold);
+  font-size:11px; font-weight:700; letter-spacing:3px;
+  text-transform:uppercase; padding:6px 18px;
+  border-radius:20px; margin-bottom:24px;
+  display:inline-block; position:relative; z-index:1;
+}
+.cover h1 {
+  font-family:'Playfair Display',serif;
+  font-size: clamp(34px,9vw,62px);
+  color:#fff; line-height:1.15; margin-bottom:12px;
+  position:relative; z-index:1;
+}
+.cover h1 em { color:var(--gold); font-style:italic; }
+.cover-line {
+  width:48px; height:3px; background:var(--gold);
+  border-radius:3px; margin:20px auto;
+  position:relative; z-index:1;
+}
+.cover-tagline {
+  font-size:14px; color:rgba(255,255,255,0.6);
+  max-width:400px; line-height:1.8;
+  position:relative; z-index:1; margin-bottom:32px;
+}
+.cover-pills {
+  display:flex; flex-wrap:wrap; gap:10px;
+  justify-content:center; margin-bottom:36px;
+  position:relative; z-index:1;
+}
+.cover-pill {
+  background:rgba(255,255,255,0.07);
+  border:1px solid rgba(201,151,58,0.3);
+  color:var(--gold-light); font-size:12px; font-weight:600;
+  padding:7px 15px; border-radius:20px;
+}
+.cover-from {
+  font-size:12px; color:rgba(255,255,255,0.3);
+  letter-spacing:1px; position:relative; z-index:1;
+}
+.cover-from span { color:var(--gold); }
+
+/* ── LAYOUT ── */
+.wrap { max-width:660px; margin:0 auto; padding:0 22px; }
+.section { padding:52px 0; }
+.eyebrow {
+  font-size:11px; font-weight:700; letter-spacing:3px;
+  text-transform:uppercase; color:var(--gold);
+  margin-bottom:12px;
+}
+.section-title {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(24px,5vw,36px);
+  line-height:1.25; margin-bottom:10px;
+}
+.section-title em { color:var(--gold); font-style:italic; }
+.section-sub { color:var(--muted); font-size:14px; margin-bottom:28px; line-height:1.7; }
+.divider { width:44px;height:3px;background:var(--gold);border-radius:3px;margin-bottom:22px; }
+
+/* ── PAIN ── */
+.pain-bg { background:var(--brown); }
+.pain-bg .eyebrow { color:var(--gold); }
+.pain-bg .section-title { color:#fff; }
+.pain-bg .section-sub { color:rgba(255,255,255,0.55); }
+.pain-list { list-style:none; margin-top:6px; }
+.pain-item {
+  display:flex; gap:14px; align-items:flex-start;
+  padding:14px 0;
+  border-bottom:1px solid rgba(255,255,255,0.07);
+  color:rgba(255,255,255,0.75); font-size:14px; line-height:1.7;
+}
+.pain-item:last-child { border-bottom:none; }
+.pain-icon {
+  width:32px;height:32px; flex-shrink:0;
+  background:rgba(201,151,58,0.12); border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px; margin-top:1px;
+}
+
+/* ── WHY ── */
+.why-card {
+  background:var(--white); border-radius:20px;
+  padding:30px 26px; margin:10px 0 28px;
+  border-left:5px solid var(--gold);
+  box-shadow:0 4px 28px rgba(44,24,16,0.08);
+}
+.why-card h3 {
+  font-family:'Playfair Display',serif;
+  font-size:20px; color:var(--brown); margin-bottom:20px;
+}
+.why-row { display:flex; gap:14px; margin-bottom:16px; align-items:flex-start; }
+.why-row:last-child { margin-bottom:0; }
+.why-num {
+  width:30px;height:30px; flex-shrink:0;
+  background:var(--gold); color:var(--brown);
+  border-radius:50%; display:flex;align-items:center;justify-content:center;
+  font-size:13px; font-weight:800;
+}
+.why-text { font-size:13px; color:var(--text); line-height:1.7; padding-top:4px; }
+.why-text strong { color:var(--brown); font-weight:700; }
+
+/* ── BEFORE AFTER ── */
+.ba-bg { background:#F5EDE0; }
+.ba-bg .section-title { color:var(--brown); }
+.ba-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:24px;
+}
+@media(max-width:480px){ .ba-grid{grid-template-columns:1fr;} }
+.ba-card { border-radius:16px; padding:20px; }
+.ba-before { background:var(--red-light); border:1px solid #f5c0c0; }
+.ba-after { background:var(--green-light); border:1px solid #a8d5bc; }
+.ba-lbl {
+  font-size:11px; font-weight:700; letter-spacing:2px;
+  text-transform:uppercase; margin-bottom:14px;
+}
+.ba-before .ba-lbl { color:var(--red); }
+.ba-after .ba-lbl { color:var(--green); }
+.ba-text { font-size:13px; line-height:1.75; white-space:pre-wrap; color:var(--text); }
+.ba-result {
+  margin-top:14px; padding:9px 12px; border-radius:8px;
+  font-size:12px; font-weight:700; line-height:1.5;
+}
+.ba-before .ba-result { background:rgba(184,50,50,0.1); color:var(--red); }
+.ba-after .ba-result { background:rgba(26,107,60,0.1); color:var(--green); }
+.ba-vs {
+  display:flex;align-items:center;justify-content:center;
+  padding:12px; font-size:22px; color:var(--gold); font-weight:700;
+}
+@media(min-width:481px){ .ba-vs{display:none;} }
+
+/* ── CAPTIONS ── */
+.caption-intro-box {
+  background:var(--brown); border-radius:18px;
+  padding:26px 22px; margin-bottom:30px;
+}
+.caption-intro-box p { color:rgba(255,255,255,0.7); font-size:13px; line-height:1.8; }
+.caption-intro-box strong { color:var(--gold); }
+.cap-card {
+  background:var(--white); border-radius:20px;
+  margin-bottom:24px; overflow:hidden;
+  box-shadow:0 2px 20px rgba(44,24,16,0.07);
+}
+.cap-head {
+  display:flex; align-items:center; gap:16px;
+  padding:18px 22px;
+  border-bottom:1px solid var(--border);
+}
+.cap-num {
+  width:44px;height:44px; flex-shrink:0;
+  background:var(--gold); color:var(--brown);
+  border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;
+  font-size:22px; font-weight:700;
+}
+.cap-name { font-weight:800; font-size:15px; color:var(--brown); }
+.cap-sub { font-size:11px; color:var(--gold); font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-top:3px; }
+.cap-body { padding:20px 22px; }
+.psych {
+  background:var(--gold-pale); border-left:4px solid var(--gold);
+  border-radius:0 10px 10px 0;
+  padding:13px 15px; margin-bottom:16px;
+}
+.psych-lbl { font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--gold);margin-bottom:5px; }
+.psych-txt { font-size:13px;color:var(--muted);line-height:1.7; }
+.cap-text {
+  background:#F8F2EA; border:1px dashed #D4BFA0;
+  border-radius:12px; padding:18px;
+  font-size:13px; line-height:1.85;
+  white-space:pre-wrap; color:var(--text);
+  margin-bottom:16px;
+}
+.cap-pills { display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px; }
+.cpill { font-size:11px;padding:5px 12px;border-radius:20px;font-weight:700; }
+.cpill-blue { background:#EEF2FF;color:#3730A3; }
+.cpill-yell { background:#FEF9C3;color:#713F12; }
+.cpill-grn { background:var(--green-light);color:var(--green); }
+.tip {
+  background:var(--green-light); border-radius:10px;
+  padding:13px 15px; font-size:13px; color:var(--green); line-height:1.7;
+}
+.tip strong { display:block;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:2px;margin-bottom:4px; }
+
+/* ── TIMING ── */
+.timing-bg { background:var(--brown); }
+.timing-bg .section-title { color:#fff; }
+.timing-bg .section-sub { color:rgba(255,255,255,0.5); }
+.timing-row {
+  display:flex; align-items:center; gap:18px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(201,151,58,0.18);
+  border-radius:14px; padding:16px 20px; margin-bottom:12px;
+}
+.timing-time {
+  font-family:'Playfair Display',serif;
+  font-size:22px; color:var(--gold); min-width:88px; flex-shrink:0;
+}
+.t-label { font-size:13px;color:#fff;font-weight:700;margin-bottom:4px; }
+.t-desc { font-size:12px;color:rgba(255,255,255,0.45);line-height:1.6; }
+.t-bar { height:4px;background:rgba(201,151,58,0.15);border-radius:4px;margin-top:8px;overflow:hidden; }
+.t-fill { height:100%;background:var(--gold);border-radius:4px; }
+
+/* ── FOLLOW UP ── */
+.fu-bg { background:#FDF6EC; }
+.fu-bg .section-title { color:var(--brown); }
+.convo-card {
+  background:var(--white); border-radius:20px;
+  padding:22px; margin-bottom:18px;
+  box-shadow:0 2px 14px rgba(44,24,16,0.06);
+}
+.convo-lbl {
+  font-size:11px;font-weight:800;text-transform:uppercase;
+  letter-spacing:2px; margin-bottom:16px;
+}
+.brow { display:flex;gap:10px;margin-bottom:12px; align-items:flex-end; }
+.brow.right { flex-direction:row-reverse; }
+.av {
+  width:32px;height:32px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:14px;
+}
+.av-c { background:#E8E8E8; }
+.av-v { background:var(--gold); }
+.bub {
+  max-width:78%;padding:10px 14px;border-radius:16px;
+  font-size:13px;line-height:1.65;
+}
+.bub-in { background:#F0F0F0;color:var(--text);border-bottom-left-radius:4px; }
+.bub-out { background:#DCF8C6;color:var(--text);border-bottom-right-radius:4px; }
+.bub-bad { background:#FFE5E5;color:#7A0000;border-bottom-right-radius:4px; }
+.gap-note { text-align:center;padding:10px;font-size:12px;color:var(--muted); }
+.result-strip {
+  background:var(--green-light);border-radius:10px;
+  padding:12px 14px;margin-top:14px;
+  font-size:13px;color:var(--green);font-weight:700;text-align:center;
+}
+.obj-card {
+  background:var(--white);border-radius:20px;
+  padding:24px;margin-top:22px;
+  border-top:4px solid var(--gold);
+  box-shadow:0 2px 16px rgba(44,24,16,0.06);
+}
+.obj-title {
+  font-family:'Playfair Display',serif;
+  font-size:19px;color:var(--brown);margin-bottom:10px;
+}
+.script {
+  background:#F8F2EA;border:1px dashed #D4BFA0;
+  border-radius:12px;padding:17px;
+  font-size:13px;line-height:1.85;
+  white-space:pre-wrap;color:var(--text);margin-top:12px;
+}
+
+/* ── TRACKER ── */
+.tracker-bg { background:var(--cream); }
+.tracker-bg .section-title { color:var(--brown); }
+table { width:100%;border-collapse:separate;border-spacing:0; }
+.tbl-wrap {
+  border-radius:16px;overflow:hidden;
+  box-shadow:0 2px 16px rgba(44,24,16,0.07);
+}
+th {
+  background:var(--brown);color:var(--gold-light);
+  padding:13px 15px;font-size:11px;font-weight:700;
+  text-align:left;letter-spacing:1px;text-transform:uppercase;
+}
+td {
+  padding:13px 15px;font-size:13px;
+  color:var(--text);border-bottom:1px solid var(--border);
+  background:var(--white);
+}
+tr:nth-child(even) td { background:var(--gold-pale); }
+tr:last-child td { border-bottom:none; }
+.tracker-note {
+  font-size:12px;color:var(--muted);text-align:center;
+  margin-top:16px;line-height:1.8;
+}
+
+/* ── UPSELL ── */
+.upsell-bg {
+  background:linear-gradient(150deg,var(--brown) 0%,#3D1F0D 100%);
+  position:relative;overflow:hidden;
+}
+.upsell-bg::before {
+  content:'';position:absolute;top:-60px;right:-60px;
+  width:260px;height:260px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,151,58,0.2) 0%,transparent 70%);
+}
+.u-inner { position:relative;z-index:1; }
+.u-badge {
+  display:inline-block;
+  background:rgba(201,151,58,0.12);border:1px solid var(--gold);
+  color:var(--gold);font-size:11px;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;
+  padding:6px 16px;border-radius:20px;margin-bottom:20px;
+}
+.upsell-bg .section-title { color:#fff; }
+.u-desc { font-size:14px;color:rgba(255,255,255,0.6);line-height:1.8;margin-bottom:30px;max-width:520px; }
+.u-list { list-style:none;margin-bottom:34px; }
+.u-item {
+  display:flex;gap:13px;align-items:flex-start;
+  padding:11px 0;border-bottom:1px solid rgba(255,255,255,0.06);
+  color:rgba(255,255,255,0.8);font-size:13px;line-height:1.6;
+}
+.u-item:last-child { border-bottom:none; }
+.u-chk {
+  width:24px;height:24px;flex-shrink:0;
+  background:var(--gold);color:var(--brown);
+  border-radius:7px;display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:800;margin-top:1px;
+}
+.price-box {
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(201,151,58,0.3);
+  border-radius:20px;padding:28px 24px;
+  display:flex;align-items:center;
+  justify-content:space-between;flex-wrap:wrap;gap:20px;
+}
+.p-was { font-size:13px;color:rgba(255,255,255,0.35);text-decoration:line-through;margin-bottom:4px; }
+.p-now { font-family:'Playfair Display',serif;font-size:44px;color:var(--gold);font-weight:900;line-height:1; }
+.p-note { font-size:11px;color:rgba(255,255,255,0.35);margin-top:6px; }
+.cta {
+  background:var(--gold);color:var(--brown);
+  font-size:15px;font-weight:800;
+  padding:16px 30px;border-radius:14px;
+  text-decoration:none;display:inline-block;
+  letter-spacing:0.2px;flex-shrink:0;
+}
+.u-note { margin-top:20px;font-size:12px;color:rgba(255,255,255,0.35);text-align:center; }
+.u-note span { color:var(--gold); }
+
+/* ── FOOTER ── */
+.footer { background:#1A0E08;padding:30px 22px;text-align:center; }
+.footer p { font-size:12px;color:rgba(255,255,255,0.25);line-height:1.9; }
+.footer span { color:var(--gold); }
+</style>
+</head>
+<body>
+
+<!-- ═══ COVER ═══ -->
+<div class="cover">
+  <div class="cover-glow top"></div>
+  <div class="cover-glow bot"></div>
+  <img 
+  src="cover.png" 
+  alt="Cover Image"
+  style="
+    width:160px;
+    height:160px;
+    border-radius:50%;
+    object-fit:cover;
+    display:block;
+    margin:0 auto 28px;
+    position:relative;
+    z-index:1;
+    border:3px solid rgba(201,151,58,0.7);
+  "
+>
+  <div class="cover-badge">Free Gift For Vendors</div>
+  <h1>Stop Posting.<br>Start <em>Selling.</em></h1>
+  <div class="cover-line"></div>
+  <p class="cover-tagline">5 WhatsApp captions that bring buyers to your DM — plus the follow-up trick most vendors never use, and the exact words to stop "it's too expensive" from killing your sales.</p>
+  <div class="cover-pills">
+    <div class="cover-pill">✦ 5 Caption Templates</div>
+    <div class="cover-pill">✦ Follow-Up Script</div>
+    <div class="cover-pill">✦ Price Objection Killer</div>
+    <div class="cover-pill">✦ Best Times to Post</div>
+    <div class="cover-pill">✦ Sales Tracker</div>
+  </div>
+  <p class="cover-from">A free gift from <span>Offers-Hub</span> · offers.ubswiftai.com</p>
+</div>
+
+
+<!-- ═══ PAIN ═══ -->
+<div class="pain-bg">
+<div class="wrap section">
+  <div class="eyebrow">Let's Talk Honestly</div>
+  <div class="divider" style="background:var(--gold);"></div>
+  <h2 class="section-title" style="color:#fff;margin-bottom:10px;">You Are Working So Hard.<br><em>But The Sales Are Not Coming.</em></h2>
+  <p class="section-sub">And it is not because your products are bad. Your products are fine. The problem is how you are selling them. Read these and tell me if any sound familiar:</p>
+  <ul class="pain-list">
+    <li class="pain-item">
+      <div class="pain-icon">😮‍💨</div>
+      You post on your WhatsApp status every single morning. People view and view. Nobody sends you a message.
+    </li>
+    <li class="pain-item">
+      <div class="pain-icon">😤</div>
+      When someone finally asks "how much," you reply with the full details — and then they disappear. Just like that. No reply, nothing.
+    </li>
+    <li class="pain-item">
+      <div class="pain-icon">💸</div>
+      You reduce your price just so you can make one sale — but when the money comes, it doesn't feel good because you know you sold yourself short.
+    </li>
+    <li class="pain-item">
+      <div class="pain-icon">🕐</div>
+      You are answering the same questions over and over — "do you have size 40?" "is it available?" "can you deliver to Surulere?" It is draining you.
+    </li>
+    <li class="pain-item">
+      <div class="pain-icon">😞</div>
+      Other vendors you know are selling every day. Their comment sections are full. You wonder what they are doing that you are not.
+    </li>
+  </ul>
+</div>
+</div>
+
+
+<!-- ═══ WHY ═══ -->
+<div style="background:var(--cream);">
+<div class="wrap section">
+  <div class="eyebrow">The Real Reason</div>
+  <div class="divider"></div>
+  <h2 class="section-title" style="color:var(--brown);">It Is Not Your Products.<br><em>It Is Your Posts.</em></h2>
+  <p class="section-sub">Here is the truth nobody told you — a post that just shows a product and a price will almost never make people buy. Here is why:</p>
+  <div class="why-card">
+    <h3>4 Things Missing From Most Vendor Posts</h3>
+    <div class="why-row">
+      <div class="why-num">1</div>
+      <div class="why-text"><strong>No reason to buy today.</strong> "Available for sale ₦12,000" is not enough. When there is no urgency, the customer tells themselves they will come back later — and later never comes.</div>
+    </div>
+    <div class="why-row">
+      <div class="why-num">2</div>
+      <div class="why-text"><strong>No proof that others bought.</strong> Your customer is asking themselves — "has anyone else bought this? Is it real?" When you show them other happy buyers, their doubt goes away fast.</div>
+    </div>
+    <div class="why-row">
+      <div class="why-num">3</div>
+      <div class="why-text"><strong>No clear instruction.</strong> People are lazy — in a good way. If you make them work to figure out how to buy, most of them will not bother. Tell them exactly what to do: "DM me the word HOLD right now." Simple.</div>
+    </div>
+    <div class="why-row">
+      <div class="why-num">4</div>
+      <div class="why-text"><strong>No follow-up.</strong> This is where most vendors lose the most money. Someone was interested, they just got busy or forgot. One follow-up message from you would have closed that sale. But nobody sent it.</div>
+    </div>
+  </div>
+  <p style="font-size:14px;color:var(--muted);text-align:center;line-height:1.8;">The 5 captions in this guide fix all 4 of these problems. You will feel the difference the same day you use them.</p>
+</div>
+</div>
+
+
+<!-- ═══ BEFORE / AFTER ═══ -->
+<div class="ba-bg">
+<div class="wrap section">
+  <div class="eyebrow">See The Difference</div>
+  <div class="divider"></div>
+  <h2 class="section-title" style="color:var(--brown);">Same Bag. Same Price.<br><em>Very Different Results.</em></h2>
+  <p style="font-size:14px;color:var(--muted);margin-bottom:4px;">The only thing that changed was the caption. Look at what happened:</p>
+  <div class="ba-grid">
+    <div class="ba-card ba-before">
+      <div class="ba-lbl">❌ Old Way — What Most Vendors Post</div>
+      <div class="ba-text">Beautiful leather bag 👜
+Available in black and brown
+Price: ₦12,500
+Quality guaranteed
+DM to order
+Delivery available</div>
+      <div class="ba-result">😴 47 views. 1 DM. Person asked to reduce. No sale.</div>
+    </div>
+    <div class="ba-vs">↓</div>
+    <div class="ba-card ba-after">
+      <div class="ba-lbl">✅ New Way — After This Guide</div>
+      <div class="ba-text">Last 3 bags remaining 👜
+This one sold out twice already this month — customers keep coming back.
+
+Black and brown still here — ₦12,500
+I can hold it with half payment.
+
+DM me "HOLD" before your colour goes.
+I'm not restocking till next month 🙏</div>
+      <div class="ba-result">🔥 47 views. 9 DMs. 4 sales. Same day.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- ═══ CAPTIONS ═══ -->
+<div style="background:var(--cream);">
+<div class="wrap section">
+  <div class="eyebrow">Your 5 Caption Templates</div>
+  <div class="divider"></div>
+  <h2 class="section-title" style="color:var(--brown);">Copy. Fill in the <em>[Gaps]</em>. Post.</h2>
+  <p class="section-sub">Everything in [square brackets] — just change it to your own product. That is all. Do not overthink it.</p>
+
+  <div class="caption-intro-box">
+    <p><strong>Quick instruction before you start:</strong> Post one caption per day — not all five at once. The best times to post are <strong>7–9am</strong> or <strong>6–9pm</strong> when people are most active on their phones. Rotate the captions every week. Never post the same one twice in a row or people will get used to it.</p>
+  </div>
+
+  <!-- 1 -->
+  <div class="cap-card">
+    <div class="cap-head">
+      <div class="cap-num">1</div>
+      <div>
+        <div class="cap-name">The Scarcity Caption</div>
+        <div class="cap-sub">Works because: Fear of missing out</div>
+      </div>
+    </div>
+    <div class="cap-body">
+      <div class="psych">
+        <div class="psych-lbl">🧠 Why This One Works</div>
+        <div class="psych-txt">The moment you say "last 3 remaining," something happens in the customer's brain — the product suddenly becomes more special than it was before. They do not want to miss out. This is the highest-converting caption for any physical product.</div>
+      </div>
+      <div class="cap-text">Last [3] pairs remaining 👟
+
+[Name of your shoe/bag/item] — Sizes [38, 39, 41] are the only ones left.
+My supplier is out of stock. I won't get more until [next month].
+
+Once these go, they go.
+
+Price: ₦[X] — payment before delivery.
+I deliver to [your city/area].
+
+DM me your SIZE right now before someone else takes it 🙏</div>
+      <div class="cap-pills">
+        <span class="cpill cpill-blue">⏰ Post at 7am or 7pm</span>
+        <span class="cpill cpill-yell">👜 Best for: Shoes, bags, clothing, anything with limited stock</span>
+        <span class="cpill cpill-grn">📈 Expect: 3–8 DMs per post</span>
+      </div>
+      <div class="tip">
+        <strong>💡 Pro tip</strong>
+        Use a specific number — "last 3" works better than "limited stock." Specific feels more real. Even if you have 10, posting "last 5" creates more urgency. You are not lying — you are marketing.
+      </div>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="cap-card">
+    <div class="cap-head">
+      <div class="cap-num">2</div>
+      <div>
+        <div class="cap-name">The Happy Customer Caption</div>
+        <div class="cap-sub">Works because: If she bought it and she's happy, maybe I should too</div>
+      </div>
+    </div>
+    <div class="cap-body">
+      <div class="psych">
+        <div class="psych-lbl">🧠 Why This One Works</div>
+        <div class="psych-txt">Nigerian buyers do not want to be the first person to take a risk. When they see that someone else already bought and is pleased, their fear goes away. A real customer story sells your product better than the best product description ever will.</div>
+      </div>
+      <div class="cap-text">Customer just picked up her order this morning 😍
+
+[Item name] in [colour] — she almost said no because of the price.
+Now see how she is feeling herself 😂
+
+Three of her friends have already messaged me after seeing her with it.
+
+Same item still available — ₦[X]
+Sizes/colours: [list what you have]
+
+If she can look this good, so can you.
+DM me "I WANT" and I will send you full details 👇</div>
+      <div class="cap-pills">
+        <span class="cpill cpill-blue">⏰ Post at 12pm–2pm (lunch time)</span>
+        <span class="cpill cpill-yell">👜 Best for: Fashion items, bags, beauty products</span>
+        <span class="cpill cpill-grn">📈 Expect: 4–10 DMs — often the best-performing caption</span>
+      </div>
+      <div class="tip">
+        <strong>💡 Pro tip</strong>
+        Start collecting customer photos now. Even a blurry selfie in your item is gold. A real person photo on your WhatsApp status gets 5 times more attention than a studio photo. Ask every customer: "Please send me a photo when it arrives, I want to celebrate you."
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="cap-card">
+    <div class="cap-head">
+      <div class="cap-num">3</div>
+      <div>
+        <div class="cap-name">The Quality Caption</div>
+        <div class="cap-sub">Works because: She understands my frustration</div>
+      </div>
+    </div>
+    <div class="cap-body">
+      <div class="psych">
+        <div class="psych-lbl">🧠 Why This One Works</div>
+        <div class="psych-txt">Most of your customers have been burnt before — they bought something cheap and it spoiled quickly. When you name that pain out loud and position your product as the solution, they feel understood. And people buy from people who understand them.</div>
+      </div>
+      <div class="cap-text">Are you tired of buying [shoes/bags] that [tear/fade/peel] after just 2 weeks? 😤
+
+I was too. That's why I only stock [genuine leather / quality fabric / trusted brands].
+
+My customers have been wearing and using their [item name] for [3–6 months] and it still looks brand new.
+
+I only sell what I would use myself.
+My name is my business.
+
+₦[X] — [sizes/colours available]
+Delivery in [2–3 days]
+
+DM me "QUALITY" and I'll send you photos 📸✅</div>
+      <div class="cap-pills">
+        <span class="cpill cpill-blue">⏰ Post at 6–8pm (evening)</span>
+        <span class="cpill cpill-yell">👜 Best for: Any product where quality matters</span>
+        <span class="cpill cpill-grn">📈 Expect: Fewer DMs but serious, ready-to-pay buyers only</span>
+      </div>
+      <div class="tip">
+        <strong>💡 Pro tip</strong>
+        This caption brings in buyers who are willing to pay full price because they are tired of cheap products. Do NOT reduce your price for these people — they are actually judging your quality by how firm you hold your price.
+      </div>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="cap-card">
+    <div class="cap-head">
+      <div class="cap-num">4</div>
+      <div>
+        <div class="cap-name">The Half Payment Caption</div>
+        <div class="cap-sub">Works because: The money barrier is cut in half</div>
+      </div>
+    </div>
+    <div class="cap-body">
+      <div class="psych">
+        <div class="psych-lbl">🧠 Why This One Works</div>
+        <div class="psych-txt">Sometimes a customer wants your item but paying the full amount at once feels heavy. When you split it, the decision suddenly becomes much easier. This caption alone has made many vendors double their sales on days they used it. Use it carefully — only when you have the item ready and can deliver fast.</div>
+      </div>
+      <div class="cap-text">PAY HALF NOW. PAY HALF ON DELIVERY. 🙌
+
+Yes, I'm doing this — but only for [this week / the next 5 customers].
+
+[Item name] — Full price ₦[X]
+Pay ₦[half] now to reserve yours.
+Pay the remaining ₦[half] when I deliver to your door.
+
+Serious buyers only please 🙏
+No time wasters.
+
+Sizes available: [list your sizes]
+Colours: [list your colours]
+
+DM me the word "HALF" right now to start your order ✅
+Only [5] spots at this arrangement.</div>
+      <div class="cap-pills">
+        <span class="cpill cpill-blue">⏰ Post Monday–Wednesday morning</span>
+        <span class="cpill cpill-yell">👜 Best for: Items priced ₦10,000 and above</span>
+        <span class="cpill cpill-grn">📈 Usually the highest-converting caption in this whole pack</span>
+      </div>
+      <div class="tip">
+        <strong>💡 Pro tip</strong>
+        Only use this when you have the item in hand and can deliver within 48 hours. A failed half-payment experience will damage your reputation badly. But when you deliver on your promise, that customer will trust you forever and refer others.
+      </div>
+    </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="cap-card">
+    <div class="cap-head">
+      <div class="cap-num">5</div>
+      <div>
+        <div class="cap-name">The Bundle Deal Caption</div>
+        <div class="cap-sub">Works because: I'm getting more for my money</div>
+      </div>
+    </div>
+    <div class="cap-body">
+      <div class="psych">
+        <div class="psych-lbl">🧠 Why This One Works</div>
+        <div class="psych-txt">Nigerians love to feel like they are getting a deal — even a small saving makes people feel smart. Bundle offers also mean you sell more products per customer without needing more people. More money per sale. Same effort.</div>
+      </div>
+      <div class="cap-text">BUY 2, SAVE ₦[amount] 🎁
+
+[Item 1] + [Item 2] — normally ₦[X] each
+Buy both today and pay only ₦[bundle price]
+
+That is ₦[saving] saved — goes straight back into your pocket.
+
+Perfect if you want to match your look 🔥
+Or give one as a surprise gift for someone you love 🎀
+
+Only [5] bundles at this price.
+After that it goes back to normal.
+
+DM me "BUNDLE" right now to claim yours 👇</div>
+      <div class="cap-pills">
+        <span class="cpill cpill-blue">⏰ Post Thursday–Friday (end of week treat energy)</span>
+        <span class="cpill cpill-yell">👜 Best for: Matching sets, accessories, gifts</span>
+        <span class="cpill cpill-grn">📈 Doubles your money per customer without needing more buyers</span>
+      </div>
+      <div class="tip">
+        <strong>💡 Pro tip</strong>
+        The bundle discount does not have to be big. ₦1,000 off feels like a win to a customer but still protects your profit. Never bundle items that are hard for you to replace — only use this with items you have enough stock of.
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- ═══ TIMING ═══ -->
+<div class="timing-bg">
+<div class="wrap section">
+  <div class="eyebrow" style="color:var(--gold);">Post Smarter, Not More</div>
+  <div class="divider" style="background:var(--gold);"></div>
+  <h2 class="section-title">When to Post for<br>Maximum Views</h2>
+  <p class="section-sub">A good caption posted at the wrong time can still flop. Nigerian WhatsApp users are most active at these 4 windows — post here and more people see your product:</p>
+  <div class="timing-row">
+    <div class="timing-time">7–9am</div>
+    <div>
+      <div class="t-label">Morning Commute 🚌</div>
+      <div class="t-desc">People are on their way to work, market, or school. They are on their phones. High attention, low distraction. Good for any caption.</div>
+      <div class="t-bar"><div class="t-fill" style="width:88%"></div></div>
+    </div>
+  </div>
+  <div class="timing-row">
+    <div class="timing-time">12–2pm</div>
+    <div>
+      <div class="t-label">Lunch Break Scroll 🍽️</div>
+      <div class="t-desc">People are resting and browsing comfortably. Good time for the Happy Customer caption or the Bundle deal.</div>
+      <div class="t-bar"><div class="t-fill" style="width:68%"></div></div>
+    </div>
+  </div>
+  <div class="timing-row" style="border:1px solid rgba(201,151,58,0.55);">
+    <div class="timing-time">6–9pm</div>
+    <div>
+      <div class="t-label">Evening Rest 🌙 — YOUR BEST TIME</div>
+      <div class="t-desc">Highest WhatsApp traffic of the entire day. People are home, relaxed, in spending mode. Post your strongest caption here every time.</div>
+      <div class="t-bar"><div class="t-fill" style="width:100%"></div></div>
+    </div>
+  </div>
+  <div class="timing-row">
+    <div class="timing-time">Saturday<br><span style="font-size:14px;">9–11am</span></div>
+    <div>
+      <div class="t-label">Weekend Shopping Mood 🛍️</div>
+      <div class="t-desc">Saturday morning is when people browse with the actual intention to spend money. Use Caption 4 or 5 on Saturday mornings.</div>
+      <div class="t-bar"><div class="t-fill" style="width:82%"></div></div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- ═══ FOLLOW UP ═══ -->
+<div class="fu-bg">
+<div class="wrap section">
+  <div class="eyebrow" style="color:var(--gold-dark);">Where Most Vendors Lose Money</div>
+  <div class="divider"></div>
+  <h2 class="section-title" style="color:var(--brown);">The Follow-Up Message<br><em>That Brings Them Back</em></h2>
+  <p class="section-sub">Someone asked for the price, you answered, they went quiet. This is not dead — it is just sleeping. One follow-up message at the right time wakes it back up. Most vendors never send it. That is where their money dies.</p>
+
+  <div class="convo-card">
+    <div class="convo-lbl" style="color:var(--red);">❌ What Most Vendors Do — And Why It Fails</div>
+    <div class="brow">
+      <div class="av av-c">👩</div>
+      <div class="bub bub-in">How much for the bag?</div>
+    </div>
+    <div class="brow right">
+      <div class="av av-v">👜</div>
+      <div class="bub bub-bad">The bag is ₦15,000. Delivery is ₦1,500. Let me know if interested.</div>
+    </div>
+    <div class="gap-note">Customer does not reply. Vendor never follows up. Sale is dead forever. 💀</div>
+  </div>
+
+  <div class="convo-card" style="border-top:4px solid var(--green);">
+    <div class="convo-lbl" style="color:var(--green);">✅ The System That Closes Sales — Copy This</div>
+    <div class="brow">
+      <div class="av av-c">👩</div>
+      <div class="bub bub-in">How much for the bag?</div>
+    </div>
+    <div class="brow right">
+      <div class="av av-v">👜</div>
+      <div class="bub bub-out">Hi! 👋 The bag is ₦15,500. I have it in black and brown. Delivery is free inside Lagos this week only!
+
+Which colour do you like so I can check if it's still available for you? 😊</div>
+    </div>
+    <div class="gap-note">— 24 hours pass with no reply —</div>
+    <div class="brow right">
+      <div class="av av-v">👜</div>
+      <div class="bub bub-out">Hi! 👋 Just checking in — I still have the bag in both colours. Someone else was asking about the brown one this morning so I wanted to reach you first.
+
+I can hold it for 2 hours if you can confirm your colour right now 🙏</div>
+    </div>
+    <div class="result-strip">This single follow-up message recovers 30–40% of conversations you thought were dead. Use it.</div>
+  </div>
+
+  <!-- PRICE OBJECTION -->
+  <div class="obj-card">
+    <div class="obj-title">When They Say "It's Too Expensive" — Here Is What to Say</div>
+    <p style="font-size:13px;color:var(--muted);line-height:1.7;">Do not reduce immediately. Most vendors do this by reflex and they lose money every time. Try this first — it works on more than half of price complaints without you dropping your price at all:</p>
+    <div class="script">Customer: "Abeg reduce small na. ₦15,500 too much."
+
+You: "Ha! I totally understand you 😊
+Honestly this is already the lowest I can go for this quality — if I reduce it, it means I have to cut somewhere and that is usually the quality. And I don't do that to my customers.
+
+But since you are buying today, let me add [free delivery / a free dust bag / a small gift] for FREE on top. That is worth about ₦1,500 extra value, no charge.
+
+Which colour should I pack for you? 🎁"</div>
+    <div class="tip" style="margin-top:14px;">
+      <strong>💡 Why This Works</strong>
+      You did not reduce the price — but the customer feels like they won something. The question "which colour should I pack?" at the end is very important. It moves them forward and assumes the sale is already happening. Most customers accept this offer and pay full price.
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- ═══ TRACKER ═══ -->
+<div class="tracker-bg">
+<div class="wrap section">
+  <div class="eyebrow" style="color:var(--gold-dark);">Track What Works for You</div>
+  <div class="divider"></div>
+  <h2 class="section-title" style="color:var(--brown);">Your 7-Day Sales Tracker</h2>
+  <p class="section-sub">After each post, write down how many people viewed, how many messaged you, and how many actually paid. By Day 7 you will know exactly which caption is your money caption — and you can use it every single week.</p>
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Day</th>
+          <th>Caption Used</th>
+          <th>Time</th>
+          <th>Views</th>
+          <th>DMs</th>
+          <th>Sales</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Day 1</td><td>Scarcity</td><td>7am</td><td></td><td></td><td></td></tr>
+        <tr><td>Day 2</td><td>Happy Customer</td><td>7pm</td><td></td><td></td><td></td></tr>
+        <tr><td>Day 3</td><td>Half Payment</td><td>9am</td><td></td><td></td><td></td></tr>
+        <tr><td>Day 4</td><td>Quality</td><td>6pm</td><td></td><td></td><td></td></tr>
+        <tr><td>Day 5</td><td>Bundle Deal</td><td>7pm</td><td></td><td></td><td></td></tr>
+        <tr><td>Day 6</td><td>Best from Days 1–5</td><td>7am</td><td></td><td></td><td></td></tr>
+        <tr><td>Day 7</td><td>2nd best caption</td><td>7pm</td><td></td><td></td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="tracker-note">
+    Caption with most DMs → use every Monday to start your week strong.<br>
+    Caption with most sales → use every Friday to close the week with money in hand.
+  </p>
+</div>
+</div>
+
+
+<!-- ═══ UPSELL ═══ -->
+<div class="upsell-bg">
+<div class="wrap section u-inner">
+  <div class="u-badge">You Have Seen What 5 Captions Can Do</div>
+  <h2 class="section-title" style="margin-bottom:12px;">Now Imagine Having<br><em>The Complete System.</em></h2>
+  <p class="u-desc">These 5 captions are just a taste. They fix your posting problem. But there is still the chaos of managing 10 DMs at once, forgetting who paid and who didn't, and manually answering the same questions every day. The full WhatsApp Vendor Sales System takes all of that off your plate.</p>
+  <ul class="u-list">
+    <li class="u-item"><div class="u-chk">✓</div>30 more caption templates — for every product, every season, every situation you can think of</li>
+    <li class="u-item"><div class="u-chk">✓</div>WhatsApp auto-reply setup — every customer that messages you gets an instant professional reply, even at 2am while you sleep</li>
+    <li class="u-item"><div class="u-chk">✓</div>Order tracking template — see exactly who paid, who is pending, who needs delivery. No more confusion or forgotten orders</li>
+    <li class="u-item"><div class="u-chk">✓</div>Full 3-day follow-up sequence — messages you send on Day 1, Day 3, and Day 7 that turn cold leads into paid orders</li>
+    <li class="u-item"><div class="u-chk">✓</div>WhatsApp product catalog — your customers browse your items and order without you answering questions back and forth</li>
+    <li class="u-item"><div class="u-chk">✓</div>Payment collection messages — get your money without sounding rude, desperate, or unprofessional</li>
+    <li class="u-item"><div class="u-chk">✓</div>Customer loyalty script — how to make every buyer come back again and send their friends to you</li>
+  </ul>
+  <div class="price-box">
+    <div>
+      <div class="p-was">Normal price: ₦20,000</div>
+      <div class="p-now">₦18,500</div>
+      <div class="p-note">One-time payment · Instant access · No monthly fees</div>
+    </div>
+    <a href="https://offers.ubswiftai.com/" class="cta">Get The Full System →</a>
+  </div>
+  <p class="u-note">This price is only for people who got this free guide. <span>It goes back to ₦20,000 after this week.</span></p>
+</div>
+</div>
+
+
+<!-- ═══ FOOTER ═══ -->
+<div class="footer">
+  <p>
+    Created with love by <span>Offers-Hub</span> · offers.ubswiftai.com<br>
+    Share this with any vendor friend who is working hard and not seeing enough sales.<br>
+    <span>© 2026 Offers-Hub. All rights reserved.</span>
+  </p>
+</div>
+
+</body>
+</html>
